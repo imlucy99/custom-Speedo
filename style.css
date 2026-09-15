@@ -1,29 +1,110 @@
-.indicators {
+/* --- RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: transparent; /* Transparan agar bisa ditimpa di game */
+    color: white;
+    font-family: 'Poppins', sans-serif;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end; /* Taruh di kanan bawah */
+    align-items: flex-end;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- KONTAINER HUD --- */
+.hud-container {
+    width: 250px;
+    background-color: rgba(0, 0, 0, 0.7); /* Background transparan hitam */
+    border: 2px solid #555;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 20px;
+}
+
+/* --- KECEPATAN --- */
+.speed-box {
+    text-align: center;
+    border-bottom: 1px solid #777;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+}
+
+#speed.val {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgb(255, 255, 255);
+}
+
+.speed-box .unit {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* --- DETAIL GIGI & BENSIN --- */
+.details {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.info-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label {
+    font-size: 11px;
+    opacity: 0.6;
+}
+
+.info-group .val {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#gear {
+    color: rgb(255, 238, 0); /* Gigi warna kuning */
+}
+
+/* --- INDIKATOR & SEIN --- */
+.indicators, .signals {
+    display: flex;
+    justify-content: space-around;
     align-items: center;
     margin-top: 10px;
     font-size: 12px;
     font-weight: bold;
 }
 
-.icon {
-    color: #555555; /* Warna saat mati/off */
-    transition: color 0.2s ease, text-shadow 0.2s ease;
+.signals .icon {
+    font-size: 16px;
 }
 
-/* Warna saat aktif */
+.icon {
+    color: #4a4a4a; /* Warna redup saat mati */
+    transition: all 0.2s ease;
+}
+
+/* --- WARNA AKTIF INDIKATOR --- */
 #seatbelt.active {
-    color: #ff3333; /* Merah */
-    text-shadow: 0 0 8px #ff3333;
+    color: #ff3c3c; /* Merah */
+    text-shadow: 0 0 8px #ff3c3c;
 }
 
 #door-lock.active {
-    color: #ffb703; /* Oranye/Kuning */
-    text-shadow: 0 0 8px #ffb703;
+    color: #ffb12c; /* Oranye */
+    text-shadow: 0 0 8px #ffb12c;
 }
 
-.signals .active {
-    color: #00ff88; /* Hijau Glow */
-    text-shadow: 0 0 10px #00ff88;
+#signal-left.active, #signal-right.active {
+    color: #00ff66; /* Hijau */
+    text-shadow: 0 0 10px #00ff66;
 }
