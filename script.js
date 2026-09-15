@@ -1,45 +1,41 @@
-// Fungsi untuk memproses data NUI
-function handleNuiData(data) {
-    if (!data) return;
+let speedMode = 0; // 0 = KMH, 1 = MPH, 2 = Knots
 
-    // Jika data dibungkus objek action / payload / detail
-    let payload = data.data || data.payload || data.detail || data;
-
-    // 1. Update Speed
-    let speed = payload.speed ?? payload.kmh ?? payload.mph ?? payload.val ?? payload.speedometer;
-    if (speed !== undefined && speed !== null) {
-        document.getElementById('speed').innerText = Math.round(Number(speed));
+// 1. Fungsi Utama dari JGVRP API
+window.setSpeed = function(speed) {
+    const speedEl = document.getElementById('speed');
+    if (!speedEl) return;
+    
+    // Kecepatan dari game masuk dalam satuan m/s (meters per second)
+    switch(speedMode) {
+        case 1: speedEl.innerText = Math.round(speed * 2.236936); break; // MPH
+        case 2: speedEl.innerText = Math.round(speed * 1.943844); break; // Knots
+        default: speedEl.innerText = Math.round(speed * 3.6); // KMH (Default)
     }
+};
 
-    // 2. Update Fuel
-    let fuel = payload.fuel ?? payload.gas ?? payload.fuelLevel;
-    if (fuel !== undefined && fuel !== null) {
-        document.getElementById('fuel').innerText = Math.round(Number(fuel)) + '%';
-    }
+window.setFuel = function(fuel) {
+    const fuelEl = document.getElementById('fuel');
+    if (!fuelEl) return;
+    // Bensin masuk angka desimal 0.0 sampai 1.0
+    const fuelPercent = Math.round(fuel * 100);
+    fuelEl.innerText = `${fuelPercent}%`;
+};
 
-    // 3. Update Gear
-    let gear = payload.gear;
-    if (gear !== undefined && gear !== null) {
-        if (gear === 0) gear = 'R';
-        document.getElementById('gear').innerText = gear;
-    }
-}
+window.setGear = function(gear) {
+    const gearEl = document.getElementById('gear');
+    if (!gearEl) return;
+    
+    let displayGear = String(gear);
+    if (gear === 0) displayGear = 'R'; // Gigi 0 = Mundur
+    gearEl.innerText = displayGear;
+};
 
-// Handler A: Dengar event message biasa
-window.addEventListener('message', function(event) {
-    handleNuiData(event.data);
-});
-
-// Handler B: Dengar event dari Parent Window (jika berada di dalam <iframe>)
-if (window.parent && window.parent !== window) {
-    window.parent.addEventListener('message', function(event) {
-        handleNuiData(event.data);
-    });
-}
-
-// Handler C: Custom Event Dispatch dari FiveM NUI
-document.addEventListener('DOMContentLoaded', function() {
-    window.addEventListener('speedometerUpdate', function(e) {
-        handleNuiData(e.detail);
-    });
-});
+window.setEngine = function(state) {};
+window.setRPM = function(rpm) {};
+window.setHealth = function(health) {};
+window.setHeadlights = function(state) {};
+window.setLeftIndicator = function(state) {};
+window.setRightIndicator = function(state) {};
+window.setSeatbelts = function(state) {};
+window.setOdometer = function(distance) {};
+window.setSpeedMode = function(mode) { speedMode = mode; };
