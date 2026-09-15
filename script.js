@@ -1,6 +1,6 @@
-let speedMode = 0; // 0 = KMH
+let speedMode = 0;
 
-// --- API TELEMETRI UTAMA ---
+// --- TELEMETRI UTAMA ---
 window.setSpeed = function(speed) {
     const speedEl = document.getElementById('speed');
     if (speedEl) speedEl.innerText = Math.round(speed * 3.6);
@@ -19,9 +19,18 @@ window.setGear = function(gear) {
     gearEl.innerText = displayGear;
 };
 
+// --- ENGINE HEALTH ---
+window.setHealth = function(health) {
+    const healthEl = document.getElementById('health');
+    if (!healthEl) return;
+    // Health masuk dalam format desimal 0.0 - 1.0
+    const healthPercent = Math.round(health * 100);
+    healthEl.innerText = `${healthPercent}%`;
+};
+
 // --- INDIKATOR ---
 
-// 1. Seatbelt (Merah kalau mati, Hijau kalau aktif)
+// Seatbelt (Off = Merah, Active = Hijau)
 window.setSeatbelts = function(state) {
     const el = document.getElementById('seatbelt');
     if (!el) return;
@@ -34,7 +43,7 @@ window.setSeatbelts = function(state) {
     }
 };
 
-// 2. Lock / Unlock Pintu
+// Lock / Unlock Pintu
 window.setLock = function(state) {
     const el = document.getElementById('door-lock');
     if (!el) return;
@@ -49,32 +58,11 @@ window.setLock = function(state) {
     }
 };
 
-// 3. Lampu Sein Kiri & Kanan
-function updateIndicator(elementId, state) {
-    const el = document.getElementById(elementId);
-    if (!el) return;
-    // Menerima masukan boolean (true/false) maupun angka (1/0)
-    if (state === true || state === 1) {
-        el.classList.add('active');
-        el.classList.remove('off');
-    } else {
-        el.classList.add('off');
-        el.classList.remove('active');
-    }
-}
-
-window.setLeftIndicator = function(state) {
-    updateIndicator('signal-left', state);
-};
-
-window.setRightIndicator = function(state) {
-    updateIndicator('signal-right', state);
-};
-
-// Dummy functions
+// Dummy Functions
 window.setEngine = function(state) {};
 window.setRPM = function(rpm) {};
-window.setHealth = function(health) {};
 window.setHeadlights = function(state) {};
+window.setLeftIndicator = function(state) {};
+window.setRightIndicator = function(state) {};
 window.setOdometer = function(distance) {};
 window.setSpeedMode = function(mode) { speedMode = mode; };
