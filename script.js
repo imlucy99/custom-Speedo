@@ -1,25 +1,32 @@
 window.addEventListener('message', function(event) {
-    const data = event.data;
+    let data = event.data;
 
-    // Menangkap data dari CEF game
-    if (data) {
-        // Update Kecepatan (Speed)
-        if (data.speed !== undefined) {
-            document.getElementById('speed').innerText = Math.round(data.speed);
-        } else if (data.speedometer !== undefined) {
-            document.getElementById('speed').innerText = Math.round(data.speedometer);
+    // Jika data dikirim dalam bentuk string JSON, lakukan parse
+    if (typeof data === 'string') {
+        try {
+            data = JSON.parse(data);
+        } catch (e) {
+            return;
         }
+    }
 
-        // Update Bensin (Fuel / Gas)
-        if (data.fuel !== undefined) {
-            document.getElementById('fuel').innerText = Math.round(data.fuel) + '%';
-        } else if (data.gas !== undefined) {
-            document.getElementById('fuel').innerText = Math.round(data.gas) + '%';
-        }
+    if (!data) return;
 
-        // Update Gigi (Gear)
-        if (data.gear !== undefined) {
-            document.getElementById('gear').innerText = data.gear;
-        }
+    // 1. Tangkap Kecepatan (Speed)
+    let valSpeed = data.speed ?? data.speedometer ?? data.vehicleSpeed ?? data.kmh ?? data.val;
+    if (valSpeed !== undefined && valSpeed !== null) {
+        document.getElementById('speed').innerText = Math.round(Number(valSpeed));
+    }
+
+    // 2. Tangkap Bensin (Fuel / Gas)
+    let valFuel = data.fuel ?? data.gas ?? data.vehicleFuel;
+    if (valFuel !== undefined && valFuel !== null) {
+        document.getElementById('fuel').innerText = Math.round(Number(valFuel)) + '%';
+    }
+
+    // 3. Tangkap Gigi (Gear)
+    let valGear = data.gear ?? data.vehicleGear;
+    if (valGear !== undefined && valGear !== null) {
+        document.getElementById('gear').innerText = valGear;
     }
 });
