@@ -1,4 +1,3 @@
-/* --- RESET --- */
 * {
     margin: 0;
     padding: 0;
@@ -6,30 +5,28 @@
 }
 
 body {
-    background-color: transparent; /* Transparan agar bisa ditimpa di game */
+    background-color: transparent;
     color: white;
     font-family: 'Poppins', sans-serif;
     display: flex;
-    justify-content: flex-end; /* Taruh di kanan bawah */
+    justify-content: flex-end;
     align-items: flex-end;
     height: 100vh;
     overflow: hidden;
 }
 
-/* --- KONTAINER HUD --- */
 .hud-container {
-    width: 250px;
-    background-color: rgba(0, 0, 0, 0.7); /* Background transparan hitam */
-    border: 2px solid #555;
+    width: 260px;
+    background-color: rgba(0, 0, 0, 0.75);
+    border: 2px solid #444;
     border-radius: 12px;
     padding: 15px;
     margin: 20px;
 }
 
-/* --- KECEPATAN --- */
 .speed-box {
     text-align: center;
-    border-bottom: 1px solid #777;
+    border-bottom: 1px solid #555;
     margin-bottom: 12px;
     padding-bottom: 8px;
 }
@@ -38,18 +35,17 @@ body {
     font-family: 'Orbitron', sans-serif;
     font-size: 48px;
     font-weight: 700;
-    text-shadow: 0 0 10px rgb(255, 255, 255);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .speed-box .unit {
-    font-size: 14px;
+    font-size: 13px;
     opacity: 0.8;
 }
 
-/* --- DETAIL GIGI & BENSIN --- */
 .details {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 12px;
 }
@@ -61,50 +57,52 @@ body {
 }
 
 .label {
-    font-size: 11px;
+    font-size: 10px;
     opacity: 0.6;
 }
 
 .info-group .val {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
 }
 
 #gear {
-    color: rgb(255, 238, 0); /* Gigi warna kuning */
+    color: #ffea00;
 }
 
-/* --- INDIKATOR & SEIN --- */
-.indicators, .signals {
+#health {
+    color: #00e5ff; /* Engine health warna biru cyan */
+}
+
+.indicators {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-top: 10px;
-    font-size: 12px;
+    border-top: 1px solid #444;
+    padding-top: 10px;
+    font-size: 11px;
     font-weight: bold;
 }
 
-.signals .icon {
-    font-size: 16px;
-}
+/* --- WARNA INDIKATOR --- */
 
-.icon {
-    color: #4a4a4a; /* Warna redup saat mati */
-    transition: all 0.2s ease;
-}
-
-/* --- WARNA AKTIF INDIKATOR --- */
-#seatbelt.active {
-    color: #ff3c3c; /* Merah */
+/* Seatbelt: Merah kalau belum dipake, Hijau kalau dipake */
+#seatbelt.off {
+    color: #ff3c3c;
     text-shadow: 0 0 8px #ff3c3c;
 }
 
-#door-lock.active {
-    color: #ffb12c; /* Oranye */
-    text-shadow: 0 0 8px #ffb12c;
+#seatbelt.active {
+    color: #00ff66;
+    text-shadow: 0 0 8px #00ff66;
 }
 
-#signal-left.active, #signal-right.active {
-    color: #00ff66; /* Hijau */
-    text-shadow: 0 0 10px #00ff66;
+/* Door Lock */
+#door-lock.off {
+    color: #888888; /* Abu-abu saat Unlocked */
+}
+
+#door-lock.active {
+    color: #ffb12c; /* Oranye saat Locked */
+    text-shadow: 0 0 8px #ffb12c;
 }
