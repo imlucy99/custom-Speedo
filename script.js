@@ -1,33 +1,32 @@
-// Konversi m/s ke MPH (1 m/s = 2.236936 MPH)
 const MPS_TO_MPH = 2.236936;
-let indicatorsState = 0;
 
-// 1. Kecepatan (MPH)
 window.setSpeed = function(speed) {
     const el = document.getElementById('speed');
     if (el) el.innerText = Math.round(speed * MPS_TO_MPH);
 };
 
-// 2. Fuel (0.0 - 1.0)
 window.setFuel = function(fuel) {
     const el = document.getElementById('fuel');
     if (el) el.innerText = `${Math.round(fuel * 100)}%`;
 };
 
-// 3. Gear
 window.setGear = function(gear) {
     const el = document.getElementById('gear');
     if (!el) return;
     el.innerText = (gear === 0) ? 'R' : String(gear);
 };
 
-// 4. RPM (0.0 - 1.0)
+// --- RPM BAR (0.0 - 1.0 dikonversi ke %) ---
 window.setRPM = function(rpm) {
-    const el = document.getElementById('rpm');
-    if (el) el.innerText = `${Math.round(rpm * 100)}%`;
+    const barEl = document.getElementById('rpm-bar');
+    if (!barEl) return;
+    
+    let percent = Math.round(rpm * 100);
+    percent = Math.max(0, Math.min(100, percent)); // Batasi 0% - 100%
+    
+    barEl.style.width = `${percent}%`;
 };
 
-// 5. Engine Health (Menangani skala desimal 0-1 maupun skala GTA 0-1000)
 window.setHealth = function(health) {
     const el = document.getElementById('health');
     if (!el) return;
@@ -36,7 +35,6 @@ window.setHealth = function(health) {
     el.innerText = `${percent}%`;
 };
 
-// 6. Engine On/Off
 window.setEngine = function(state) {
     const el = document.getElementById('engine-state');
     if (!el) return;
@@ -49,7 +47,6 @@ window.setEngine = function(state) {
     }
 };
 
-// 7. Headlights Status (0: Off, 1: On, 2: High Beam)
 window.setHeadlights = function(state) {
     const el = document.getElementById('headlights');
     if (!el) return;
@@ -65,7 +62,6 @@ window.setHeadlights = function(state) {
     }
 };
 
-// 8 & 9. Lampu Sein (Kiri & Kanan)
 window.setLeftIndicator = function(state) {
     const el = document.getElementById('signal-left');
     if (!el) return;
@@ -90,7 +86,6 @@ window.setRightIndicator = function(state) {
     }
 };
 
-// 10. Seatbelt (Off = Merah, Active = Hijau)
 window.setSeatbelts = function(state) {
     const el = document.getElementById('seatbelt');
     if (!el) return;
@@ -103,11 +98,9 @@ window.setSeatbelts = function(state) {
     }
 };
 
-// 11. Odometer (Miles)
 window.setOdometer = function(distance) {
     const el = document.getElementById('odometer');
     if (el) el.innerText = `${distance.toFixed(1)} Miles`;
 };
 
-// 12. Dummy Mode Callback
 window.setSpeedMode = function(mode) {};
