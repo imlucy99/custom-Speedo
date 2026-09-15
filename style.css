@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  user-select: none;
+}
+
+body {
+  background: transparent; /* PENTING: Harus transparan agar tidak menutupi game */
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.speedometer-container {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  background: rgba(15, 15, 20, 0.85);
+  padding: 15px 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  min-width: 160px;
+  text-align: center;
+}
+
+.speed-box {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+#speed {
+  font-size: 42px;
+  font-weight: 800;
+  color: #00ffcc;
+  text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+}
+
+.unit {
+  font-size: 14px;
+  font-weight: 600;
+  color: #888;
+}
+
+.hud-details {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 8px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.hud-item strong {
+  display: block;
+  font-size: 14px;
+  color: #fff;
+  margin-top: 2px;
+}
