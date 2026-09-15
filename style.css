@@ -1,4 +1,4 @@
-/* RESET & POSISI PADA CEF GAME */
+/* RESET UNTUK CANVAS CEF JGVRP */
 * {
     margin: 0;
     padding: 0;
@@ -8,27 +8,25 @@
 }
 
 html, body {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background: transparent !important;
-    background-color: rgba(0, 0, 0, 0) !important;
+    background-color: transparent !important;
     overflow: hidden !important;
     font-family: 'Poppins', sans-serif;
     color: #ffffff;
-    /* Posisikan HUD ke Pojok Kanan Bawah */
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
 }
 
-/* KOTAK HUD UTAMA (TRANSPARAN TANPA SHADOW) */
+/* KOTAK HUD UTAMA (Posisikan di Pojok Kanan Bawah Canvas) */
 .hud-container {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
     width: 270px;
     background: rgba(15, 15, 20, 0.85) !important;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     padding: 14px;
-    margin: 30px; /* Jarak dari pinggir kanan dan bawah layar */
 }
 
 .top-row {
