@@ -1,29 +1,29 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Custom Speedometer</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="speedometer-container">
+<div class="hud-container">
     <div class="speed-box">
-      <span id="speed">0</span>
-      <span class="unit">KM/H</span>
+        <span id="speed">0</span>
+        <span class="unit">KM/H</span>
     </div>
-    <div class="hud-details">
-      <div class="hud-item">
-        <span>GEAR</span>
-        <strong id="gear">N</strong>
-      </div>
-      <div class="hud-item">
-        <span>FUEL</span>
-        <strong id="fuel">100%</strong>
-      </div>
-    </div>
-  </div>
 
-  <script src="script.js"></script>
-</body>
-</html>
+    <hr>
+
+    <div class="details">
+        <div>
+            <span class="label">GEAR</span>
+            <span id="gear" class="val">N</span>
+        </div>
+        <div>
+            <span class="label">FUEL</span>
+            <span id="fuel" class="val">100%</span>
+        </div>
+    </div>
+
+    <!-- Tambahan Indikator Baru -->
+    <div class="indicators">
+        <span id="seatbelt" class="icon off">SEATBELT</span>
+        <span id="door-lock" class="icon off">LOCK</span>
+        <div class="signals">
+            <span id="signal-left" class="icon off">◄</span>
+            <span id="signal-right" class="icon off">►</span>
+        </div>
+    </div>
+</div>
