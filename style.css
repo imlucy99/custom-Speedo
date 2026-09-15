@@ -4,7 +4,6 @@
     box-sizing: border-box;
 }
 
-/* Memaksa latar belakang halaman penuh jadi 100% transparan */
 html, body {
     background: transparent !important;
     background-color: rgba(0, 0, 0, 0) !important;
@@ -18,10 +17,9 @@ html, body {
     overflow: hidden;
 }
 
-/* Kotak HUD Speedometer */
 .hud-container {
     width: 280px;
-    background: rgba(15, 15, 20, 0.85); /* Hanya kotak ini yang punya background transparan */
+    background: rgba(15, 15, 20, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 16px;
     padding: 16px;
@@ -47,7 +45,7 @@ html, body {
 
 .speed-box {
     text-align: center;
-    margin: 4px 0;
+    margin: 4px 0 8px 0;
 }
 
 #speed.val {
@@ -63,6 +61,35 @@ html, body {
     font-weight: 700;
     letter-spacing: 2px;
     color: #888;
+}
+
+/* --- STYLING RPM BAR --- */
+.rpm-container {
+    margin-bottom: 12px;
+}
+
+.rpm-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.rpm-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.rpm-bar-fill {
+    height: 100%;
+    width: 0%; /* Diatur dinamis via JS */
+    background: linear-gradient(90deg, #ffea00 0%, #ff9100 70%, #ff3c3c 100%);
+    box-shadow: 0 0 8px #ff9100;
+    border-radius: 4px;
+    transition: width 0.1s linear; /* Animasi pengisian mulus */
 }
 
 .sub-info {
@@ -85,7 +112,7 @@ html, body {
 
 .details {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     margin-bottom: 12px;
 }
@@ -103,12 +130,11 @@ html, body {
 }
 
 .info-group .val {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
 }
 
 #gear { color: #ffea00; }
-#rpm { color: #ff9100; }
 #fuel { color: #00e5ff; }
 #health { color: #00ff66; }
 
@@ -126,7 +152,7 @@ html, body {
     transition: all 0.2s ease;
 }
 
-/* Status Warna Indikator */
+/* Status Indikator */
 #seatbelt.off {
     color: #ff3c3c;
     text-shadow: 0 0 8px #ff3c3c;
