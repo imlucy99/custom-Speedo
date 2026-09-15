@@ -1,16 +1,14 @@
 let speedMode = 0; // 0 = KMH
 
-// --- API DASAR ---
+// --- API TELEMETRI UTAMA ---
 window.setSpeed = function(speed) {
     const speedEl = document.getElementById('speed');
-    if (!speedEl) return;
-    speedEl.innerText = Math.round(speed * 3.6); // Convert m/s ke KMH
+    if (speedEl) speedEl.innerText = Math.round(speed * 3.6);
 };
 
 window.setFuel = function(fuel) {
     const fuelEl = document.getElementById('fuel');
-    if (!fuelEl) return;
-    fuelEl.innerText = `${Math.round(fuel * 100)}%`;
+    if (fuelEl) fuelEl.innerText = `${Math.round(fuel * 100)}%`;
 };
 
 window.setGear = function(gear) {
@@ -21,56 +19,59 @@ window.setGear = function(gear) {
     gearEl.innerText = displayGear;
 };
 
-// --- TAMBAHAN INDIKATOR ---
+// --- INDIKATOR ---
 
-// 1. Seatbelt ( true / false )
+// 1. Seatbelt (Merah kalau mati, Hijau kalau aktif)
 window.setSeatbelts = function(state) {
-    const seatbeltEl = document.getElementById('seatbelt');
-    if (!seatbeltEl) return;
+    const el = document.getElementById('seatbelt');
+    if (!el) return;
     if (state) {
-        seatbeltEl.classList.add('active');
-        seatbeltEl.classList.remove('off');
+        el.classList.add('active');
+        el.classList.remove('off');
     } else {
-        seatbeltEl.classList.remove('active');
-        seatbeltEl.classList.add('off');
+        el.classList.add('off');
+        el.classList.remove('active');
     }
 };
 
-// 2. Lock / Unlock Pintu ( true / false )
+// 2. Lock / Unlock Pintu
 window.setLock = function(state) {
-    const lockEl = document.getElementById('door-lock');
-    if (!lockEl) return;
+    const el = document.getElementById('door-lock');
+    if (!el) return;
     if (state) {
-        lockEl.innerText = "LOCKED";
-        lockEl.classList.add('active');
+        el.innerText = "LOCKED";
+        el.classList.add('active');
+        el.classList.remove('off');
     } else {
-        lockEl.innerText = "UNLOCKED";
-        lockEl.classList.remove('active');
+        el.innerText = "UNLOCKED";
+        el.classList.add('off');
+        el.classList.remove('active');
     }
 };
 
-// 3. Lampu Sein Kanan & Kiri
-window.setLeftIndicator = function(state) {
-    const leftEl = document.getElementById('signal-left');
-    if (!leftEl) return;
-    if (state) {
-        leftEl.classList.add('active');
+// 3. Lampu Sein Kiri & Kanan
+function updateIndicator(elementId, state) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    // Menerima masukan boolean (true/false) maupun angka (1/0)
+    if (state === true || state === 1) {
+        el.classList.add('active');
+        el.classList.remove('off');
     } else {
-        leftEl.classList.remove('active');
+        el.classList.add('off');
+        el.classList.remove('active');
     }
+}
+
+window.setLeftIndicator = function(state) {
+    updateIndicator('signal-left', state);
 };
 
 window.setRightIndicator = function(state) {
-    const rightEl = document.getElementById('signal-right');
-    if (!rightEl) return;
-    if (state) {
-        rightEl.classList.add('active');
-    } else {
-        rightEl.classList.remove('active');
-    }
+    updateIndicator('signal-right', state);
 };
 
-// Callback dummy bawaan JGVRP agar tidak error
+// Dummy functions
 window.setEngine = function(state) {};
 window.setRPM = function(rpm) {};
 window.setHealth = function(health) {};
