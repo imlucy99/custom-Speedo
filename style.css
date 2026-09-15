@@ -4,9 +4,10 @@
     box-sizing: border-box;
 }
 
+/* Memaksa background browser in-game menjadi 100% transparan */
 html, body {
-    background: transparent !important;
-    background-color: rgba(0, 0, 0, 0) !important;
+    background: none !important;
+    background-color: transparent !important;
     color: #ffffff;
     font-family: 'Poppins', sans-serif;
     display: flex;
@@ -17,15 +18,15 @@ html, body {
     overflow: hidden;
 }
 
+/* Kotak HUD Speedometer */
 .hud-container {
     width: 280px;
-    background: rgba(15, 15, 20, 0.85);
+    background: rgba(15, 15, 20, 0.9); /* Latar belakang kotak HUD */
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 16px;
     padding: 16px;
     margin: 20px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
 }
 
 .top-row {
@@ -63,7 +64,7 @@ html, body {
     color: #888;
 }
 
-/* --- STYLING RPM BAR --- */
+/* RPM BAR */
 .rpm-container {
     margin-bottom: 12px;
 }
@@ -85,11 +86,11 @@ html, body {
 
 .rpm-bar-fill {
     height: 100%;
-    width: 0%; /* Diatur dinamis via JS */
+    width: 0%;
     background: linear-gradient(90deg, #ffea00 0%, #ff9100 70%, #ff3c3c 100%);
     box-shadow: 0 0 8px #ff9100;
     border-radius: 4px;
-    transition: width 0.1s linear; /* Animasi pengisian mulus */
+    transition: width 0.1s linear;
 }
 
 .sub-info {
@@ -152,7 +153,7 @@ html, body {
     transition: all 0.2s ease;
 }
 
-/* Status Indikator */
+/* Status Indikator Warna */
 #seatbelt.off {
     color: #ff3c3c;
     text-shadow: 0 0 8px #ff3c3c;
